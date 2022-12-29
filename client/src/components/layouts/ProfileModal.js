@@ -45,12 +45,13 @@ const ProfileModal = ({ user, children }) => {
             textAlign="center"
             justifyContent="space-between"
           >
-            {/* <Image
+            <Image
+              hidden
               borderRadius="full"
               boxSize="150px"
               src={user.pic}
               alt={user.name}
-            /> */}
+            />
             <Avatar size="2xl" cursor="pointer" name={user.name} />
             <Text fontSize="25px" fontFamily="Work sans">
               {user.email}
