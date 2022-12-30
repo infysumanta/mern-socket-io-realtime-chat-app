@@ -15,12 +15,15 @@ import { getSender, getSenderFull } from "../../config/ChatLogics";
 import ProfileModal from "../layouts/ProfileModal";
 import axios from "axios";
 import ScrollableChat from "./ScrollableChat";
-const SingleChat = ({ fetchAgain, setFetchAgain }) => {
+
+const SingleChat = ({ fetchAgain, setFetchAgain, socket, socketConnected }) => {
   const { user, selectedChat, setSelectedChat } = ChatState();
 
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
   const [newMessage, setNewMessage] = useState("");
+
+  let selectedChatCompare;
 
   const toast = useToast();
 
@@ -43,6 +46,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
       setMessages(data);
       setLoading(false);
     } catch (error) {
+      console.log(error);
       toast({
         title: "Error Occured!",
         description: "Failed to Load the Messages",
@@ -71,7 +75,6 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
           },
           config
         );
-
         setMessages([...messages, data]);
       } catch (error) {
         toast({
@@ -92,6 +95,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
 
   useEffect(() => {
     fetchMessages();
+    selectedChatCompare = selectedChat;
   }, [selectedChat]);
 
   return (
