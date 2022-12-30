@@ -138,7 +138,7 @@ const GroupChatModal = ({ children }) => {
           <ModalHeader
             fontSize="25px"
             fontFamily="Work sans"
-            d="flex"
+            display="flex"
             textAlign="center"
             justifyContent="center"
           >
