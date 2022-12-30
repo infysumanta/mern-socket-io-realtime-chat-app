@@ -9,7 +9,7 @@ import ChatLoading from "./ChatLoading";
 import { getSender } from "../../config/ChatLogics";
 import GroupChatModal from "./GroupChatModal";
 
-const MyChats = () => {
+const MyChats = ({ fetchAgain }) => {
   const [loggedUser, setLoggedUser] = useState();
   const { user, setUser, selectedChat, setSelectedChat, chats, setChats } =
     ChatState();
@@ -41,7 +41,7 @@ const MyChats = () => {
 
   useEffect(() => {
     fetchChats();
-  }, []);
+  }, [fetchAgain]);
 
   return (
     <Box
@@ -76,7 +76,7 @@ const MyChats = () => {
         </GroupChatModal>
       </Box>
       <Box
-        display="flex"
+        d="flex"
         flexDir="column"
         p={3}
         bg="#F8F8F8"
